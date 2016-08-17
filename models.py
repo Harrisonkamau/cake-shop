@@ -6,15 +6,18 @@ from peewee import *
 
 
 # set up database
-DATABASE = SqliteDatabase('social.db')
+DATABASE = SqliteDatabase('cake-shop.db')
 
 
 # create a users' model
 class User(UserMixin, Model):
+    first_name = CharField(unique=True)
+    last_name = CharField(unique=True)
+    location = CharField(unique=True)
     username = CharField(unique=True)
     email = CharField(unique=True)
     password = CharField(max_length=100)
-    joined_at = DateTimeField(default=datetime.datetime.now)
+    date_of_birth = DateTimeField(default=datetime.datetime.now)
     is_admin = BooleanField(default=False)
 
     class Meta:
