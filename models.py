@@ -1,17 +1,37 @@
-from flask_sqlalchemy import SQLAlchemy  # import SQAlchemy
-from views import app  # import flask app from views module
+# import modules
+import datetime
+from flask_bcrypt import generate_password_hash
+from flask_login import UserMixin
+from peewee import *
 
 
-# configure db
-db = SQLAlchemy(app)
+# set up database
+DATABASE = SqliteDatabase('social.db')
 
 
-# create a users table
-class User(db.Models):
-    __tablename__ = 'users'
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column('username', db.String(20), unique=True, index=True)
-    password = db.Column('password', db.String(250))
-    first_name = db.Column('first name', db.String(50), unique=True, index=True)
-    date_of_birth = db.Column('date of birth', db.DateTime)
-    location  = db.Column('Location', db.String(50), unique=True, index=True)
+# create a users' model
+class User(UserMixin, Model):
+    username = CharField(unique=True)
+    email = CharField(unique=True)
+    password = CharField(max_length=100)
+    joined_at = DateTimeField(default=datetime.datetime.now)
+    is_admin = BooleanField(default=False)
+
+    class Meta:
+        database = DATABASE
+        order_by = ('-joined_at',)  # list users in a descending order
+    # use comma at the end since it's a tuple
+
+    @classmethod  # without this, a user instance has to be created to call create_user to create a user instance!
+    def create_user(cls, username, email, password, admin=False):
+        try:  # cls refers to the User class
+            with DATABASE.transaction():
+                cls.create(
+                    username=username,
+                    email=email,
+                    password=generate_password_hash(password),
+                    is_admin=admin
+                           )
+
+        except IntegrityError:
+            raise ValueError("User already exists!")
