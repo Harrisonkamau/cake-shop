@@ -49,10 +49,7 @@ class RegisterForm(Form):
 
 # create a login form
 class LoginForm(Form):
-    email = StringField('Email',validators=[DataRequired(), Email()])
+    username = StringField('Username',validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
 
 
-# create a post form
-class PostForm(Form):
-    content = TextAreaField("Post anything!", validators=[DataRequired()])
