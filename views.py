@@ -1,6 +1,7 @@
 from flask import Flask, g, render_template, redirect, flash, url_for, abort
 from flask_bcrypt import check_password_hash
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+import sqlite3
 
 import forms
 import models
@@ -53,7 +54,7 @@ def register():
             email=form.email.data,
             password=form.password.data
         )
-        return redirect(url_for('index'))
+        return redirect(url_for('home'))
     return render_template('register.html', form=form)
 
 
@@ -63,26 +64,28 @@ def login():
     form = forms.LoginForm()
     if form.validate_on_submit():
         try:
-            user = models.User.get(models.User.email == form.email.data)
+            user = models.User.get(models.User.username == form.username.data)
         except models.DoesNotExist:
-            flash("Your emails and password do not match!", "error")
+            flash("Your username and password do not match!", "error")
         else:
             if check_password_hash(user.password, form.password.data):
                 login_user(user)
                 flash("Successfully logged in!!", "success")
-                return redirect(url_for('index'))
+                return redirect(url_for('home'))
             else:
                 flash("Your emails and password do not match!", "error")
     return render_template('login.html', form=form)
 
 
 # create a logout route
-@app.route('/logout')
 @login_required
+@app.route('/logout')
 def logout():
     logout_user()
     flash("You've been logged out!", "success")
     return redirect(url_for('index'))
+
+
 # use decorators to link the functions to the url
 @app.route('/index')
 def index():
@@ -90,16 +93,23 @@ def index():
 
 
 # create a home page
+@login_required
 @app.route('/')
+#
 def home():
     return render_template('layout.html')
 
 
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    pass
-
-
 # start the server
 if __name__ == "__main__":
-    app.run(debug=True)
+    models.initialize()
+    try:
+        models.User.create_user(
+            username='harrisonkamau',
+            email='kamauharry@yahoo.com',
+            password='password',
+            admin=True
+        )
+    except ValueError:
+        pass
+    app.run(debug=True, port=4000)
