@@ -6,7 +6,7 @@ class Config(object):
     DEBUG = False
     TESTING = False
     CSRF_ENABLED = True
-    SECRET_KEY = 'this-really-needs-to-be-changed_later'
+    SECRET_KEY = 'hialreuhsan.ndjfbfhgfhfhfre'
     SQLALCHEMY_DATABASE_URI = "sqlite:///:bonus.db"
 
 
