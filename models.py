@@ -6,7 +6,7 @@ from peewee import *
 
 
 # set up database
-DATABASE = SqliteDatabase('cake-shop.db')
+DATABASE = SqliteDatabase('cake.db')
 
 
 # create a users' model
@@ -22,8 +22,6 @@ class User(UserMixin, Model):
 
     class Meta:
         database = DATABASE
-        order_by = ('-joined_at',)  # list users in a descending order
-    # use comma at the end since it's a tuple
 
     @classmethod  # without this, a user instance has to be created to call create_user to create a user instance!
     def create_user(cls, username, email, password, admin=False):
@@ -38,3 +36,9 @@ class User(UserMixin, Model):
 
         except IntegrityError:
             raise ValueError("User already exists!")
+
+
+def initialize():
+    DATABASE.connect()
+    DATABASE.create_tables([User], safe=True)
+    DATABASE.close()
