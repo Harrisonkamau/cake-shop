@@ -2,47 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Cake Shop</title>
+    <meta name="description" content="Cake Shop is an online shop for birthdays, gradutions, weddings among others. We offer high quality and price-friendly sumptuous cakes of any kind! Stop by our shop  along Nyamira Road." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Codeply">
+
+    <!--Bootstrap and font awesome links-->
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+
+
+       <!-- Favicon -->
+
+<link rel="icon" href="static/favicon-heart.ico" type="image/x-icon" />
 </head>
 <body>
-<nav class="navbar navbar-default" role="navigation">
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#myModal" data-toggle="modal" data-target="#myModal">Log-in</a></li>
-    </ul>
-  </div>
-</nav>
 
-<div class="text-center">
-    <h1>Open log-in modal from navbar</h1>
-    <p class="lead">Go ahead, click the 'Log-in' button in the top right of the navbar.</p>
-</div>
 
-<div class="modal fade" id="myModal">
-	<div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h4 class="modal-title">Log-in</h4>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-    		<label for="exampleInputEmail1">Email address</label>
-    		<input class="form-control" id="exampleInputEmail1" placeholder="Enter email" type="email">
-  		  </div>
-		  <div class="form-group">
-		  	<label for="exampleInputPassword1">Password</label>
-			<input class="form-control" id="exampleInputPassword1" placeholder="Password" type="password">
-		  </div>
-          <p class="text-right"><a href="#">Forgot password?</a></p>
-        </div>
-        <div class="modal-footer">
-          <a href="#" data-dismiss="modal" class="btn">Close</a>
-          <a href="#" class="btn btn-primary">Log-in</a>
-        </div>
-      </div>
+<div class="container" style="width:50%;">
+    <div class="row">
+        <h1 style="text-align:center;">Join Us</h1>
+        <form role="form">
+            <div class="col-lg-6">
+                <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>
+                <div class="form-group">
+                    <label for="InputName">Enter Name</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Enter Name" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="InputEmail">Enter Email</label>
+                    <div class="input-group">
+                        <input type="email" class="form-control" id="InputEmailFirst" name="InputEmail" placeholder="Enter Email" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="InputPassword">Enter Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="InputPassword" name="InputPassword" placeholder="Enter Password" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                </div>
+
+                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
+            </div>
+        </form>
+        <!--<div class="col-lg-5 col-md-push-1">-->
+            <!--<div class="col-md-12">-->
+                <!--<div class="alert alert-success">-->
+                    <!--<strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>-->
+                <!--</div>-->
+                <!--<div class="alert alert-danger">-->
+                    <!--<span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 </div>
+
+<!--scripts loaded here-->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 </body>
 </html>
