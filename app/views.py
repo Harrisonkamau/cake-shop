@@ -1,115 +1,74 @@
-from flask import Flask, g, render_template, redirect, flash, url_for, abort
-from flask_bcrypt import check_password_hash
-from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+# import the Flask class from flask module
+from flask import render_template, request, redirect, url_for, session
+from app import app
+from functools import wraps
 import sqlite3
-
-import forms
-import models
-
-# create flask app
-app = Flask(__name__)
-# create a secret key
-app.secret_key = 'auoesh.beoehgh.32.tibe.jeen'
-
-# create a login manager
-login_manager = LoginManager()
-login_manager.init_app(app)  # sets up the login manager for the app
-login_manager.login_view = 'login'
+from flask_login import login_user, login_required
+from forms import LoginForm
+from models import User
 
 
-# load user route
-@login_manager.user_loader
-def load_user(userid):
-    try:
-        return models.User.get(models.User.id == userid)
-    except models.DoesNotExist:  # exception got from peewee
-        return None
+# use  decorators to link a function to url
+app.route('/')
+def home():
+    return render_template('home.html')
 
 
-# create a before request route
-@app.before_request
-def before_request():
-    """Connect to the database before each request"""
-    g.db = models.DATABASE
-    g.db.connect()
-    g.user = current_user
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if g.user is not None and g.user.is_authenticated:
+        return redirect(url_for('index'))
+
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user is not None and user.verify_password(form.password.data):
+            login_user(user)
+            return redirect(url_for('layout'))
+    return render_template('auth/login.html', form=form)
 
 
-# create an after request route
-@app.after_request
-def after_request(response):
-    """Close the database after each request"""
-    g.db.close()
-    return response
+
+# logout route
+@app.route('/logout')
+@login_required
+def logout():
+    session.pop('logged_in', None)  # pops out the True value of session and deletes the key(logged_in))
+    return redirect(url_for('login'))
 
 
-# create a register route to register a new user
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    form = forms.RegisterForm()
-    if form.validate_on_submit():
-        flash('Registration successful!', 'success')
-        models.User.create_user(
-            username=form.username.data,
-            email=form.email.data,
-            password=form.password.data
-        )
+    # import ipdb; ipdb.set_trace()
+
+    # validate the user's information against the defined Roles schema
+    form = RegistrationForm()
+    if request.method == 'POST' and form.validate():
+        user = User(name=request.form['username'], password=request.form['password'], email=request.form['email'])
+
+        # automatically adds the user to the database(db)
+        db.session.add(user)
+
+        # save the changes to the db
+        db.session.commit()
         return redirect(url_for('home'))
+    else:
+        print "failed"
+
+        # if registration is unsuccessful, render the registration form
     return render_template('register.html', form=form)
 
 
-# create a login route
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    form = forms.LoginForm()
-    if form.validate_on_submit():
-        try:
-            user = models.User.get(models.User.username == form.username.data)
-        except models.DoesNotExist:
-            flash("Your username and password do not match!", "error")
-        else:
-            if check_password_hash(user.password, form.password.data):
-                login_user(user)
-                flash("Successfully logged in!!", "success")
-                return redirect(url_for('home'))
-            else:
-                flash("Your emails and password do not match!", "error")
-    return render_template('login.html', form=form)
+# catch errors
+@app.errorhandler(404)
+def not_found(e):
+    return render_template('404.html')
+
+# connect to the application's db
+def connect_db():
+    return sqlite3.connect(app.database)
 
 
-# create a logout route
-@login_required
-@app.route('/logout')
-def logout():
-    logout_user()
-    flash("You've been logged out!", "success")
-    return redirect(url_for('index'))
-
-
-# use decorators to link the functions to the url
-@app.route('/index')
-def index():
-    return render_template('index.html')
-
-
-# create a home page
-@login_required
-@app.route('/')
-#
-def home():
-    return render_template('layout.html')
-
-
-# start the server
-if __name__ == "__main__":
-    models.initialize()
-    try:
-        models.User.create_user(
-            username='harrisonkamau',
-            email='kamauharry@yahoo.com',
-            password='password',
-            admin=True
-        )
-    except ValueError:
-        pass
-    app.run(debug=True, port=4000)
+# start the server with the 'run()' method
+# if __name__ == "__main__":
+#     app.run(debug=True)
