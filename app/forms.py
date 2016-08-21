@@ -16,7 +16,7 @@ class RegistrationForm(Form):
 
 # create a login form
 class LoginForm(Form):
-    email = StringField('Email', validators=[DataRequired(), Length(1, 64), Email()])
+    username = StringField('Username', validators=[DataRequired(), Length(1, 64)])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Log In')
 
