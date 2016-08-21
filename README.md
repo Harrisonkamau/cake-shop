@@ -15,6 +15,6 @@
 ![Alt text](screenshots/tasty3.png  "tasty 2")
 
 <h3>Create a new post</h3>
-![Alt text](screenshots/outlok1.png  "tasty 3")
+![Alt text](screenshots/outlook1.png  "tasty 3")
 
 
