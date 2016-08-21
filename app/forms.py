@@ -1,55 +1,25 @@
 from flask_wtf import Form
-from wtforms import StringField, PasswordField, BooleanField, TextAreaField
-from wtforms.validators import DataRequired, Regexp, ValidationError,Email, Length, EqualTo
-from models import User
-
-
-def name_exists(form, field):
-    if User.select().where(User.username == field.data).exists():
-        raise ValidationError('User with that name already exists')
-
-
-def email_exists(form, field):
-    if User.select().where(User.email == field.data).exists():
-        raise ValidationError('User with that email already exists')
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import DataRequired, Regexp, Email, Length, EqualTo
 
 
 # create a registration form
-class RegisterForm(Form):
-    username = StringField(
-        'Username',
-        validators=[
-            DataRequired(),
-            Regexp(
-                r'^[a-zA-z0-9_]+',
-                message='User name should be one word,letters, numbers and underscores only'
-            ),
-            name_exists
-        ])
-    email = StringField(
-        'Email',
-        validators=[
-            DataRequired(),
-            Email(),
-            email_exists
-
-        ])
-    password = PasswordField(
-        'Password',
-        validators=[
-            DataRequired(),
-            Length(min=2),
-            EqualTo('password2', 'Passwords must match')
-        ])
-    password2 = PasswordField(
-        'Confirm Password',
-        validators=[DataRequired()]
-    )
+class RegistrationForm(Form):
+    email = StringField('Email', validators=[DataRequired(), Length(1, 64), Email()])
+    username = StringField('Username', validators=[
+        DataRequired(), Length(1, 64), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0, 'Username must have only letters, numbers, dots or underscores')])
+    password = PasswordField('Password', validators=[
+                                                    DataRequired(),
+                                                    EqualTo('confirm', message='Passwords must match.')])
+    confirm = PasswordField('Repeat Password')
 
 
 # create a login form
 class LoginForm(Form):
-    username = StringField('Username',validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Length(1, 64), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Log In')
+
+
 
 

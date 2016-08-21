@@ -1,9 +1,10 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400);
 @import url(http://fonts.googleapis.com/css?family=Bitter:400);
+@import url(http://fonts.googleapis.com/css?family=Lobster+Two);
 
 html,body {
 	height:100%;
-    background:center no-repeat fixed url('https://snap-photos.s3.amazonaws.com/img-thumbs/960w/BGRA0KYCD8.jpg');
+    background:center no-repeat fixed url(../img/amazon.jpg);
     background-size: cover;
     color:#444;
     font-family: 'Lato', sans-serif;

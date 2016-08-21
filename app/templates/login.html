@@ -1,78 +1,52 @@
-     <!DOCTYPE html>
-<html >
-  <head>
+      <!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title>Cake shop</title>
+    <title>Cake Shop</title>
+    <meta name="description" content="Cake Shop is an online shop for birthdays, gradutions, weddings among others. We offer high quality and price-friendly sumptuous cakes of any kind! Stop by our shop  along Nyamira Road." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Codeply">
+
+    <!--Bootstrap and font awesome links-->
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
 
 
-    <link rel="stylesheet" href="./static/css/reset.css">
+    <link rel="stylesheet" href="static/css/login.css" />
+       <!-- Favicon -->
 
-    <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
-<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
-
-        <link rel="stylesheet" href="./static/css/style.css">
-
-
-
-
-  </head>
-
-  <body>
-
-<div class="container">
-  <div class="card"></div>
-  <div class="card">
-    <h1 class="title">Login</h1>
-    <form>
-      <div class="input-container">
-        <input type="text" id="Username" required="required"/>
-        <label for="Username">Username</label>
-        <div class="bar"></div>
-      </div>
-      <div class="input-container">
-        <input type="password" id="Password" required="required"/>
-        <label for="Password">Password</label>
-        <div class="bar"></div>
-      </div>
-      <div class="button-container">
-        <button><span>Login</span></button>
-      </div>
-      <div class="footer"><a href="#">Forgot your password?</a></div>
-    </form>
+<link rel="icon" href="static/favicon-heart.ico" type="image/x-icon" />
+    <style>
+        body{
+            background-image:none
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid" style="text-align:center;">
+            <a href="/"><i class="fa fa-home" aria-hidden="true">&nbsp;Take me Home</i></a>
+        </div>
+ <form action="" method="post", name="login">
+  <div class="group">
+    <input type="text"><span class="highlight"></span><span class="bar"></span>
+    <label>Name</label>
   </div>
-  <div class="card alt">
-    <div class="toggle"></div>
-    <h1 class="title">Register
-      <div class="close"></div>
-    </h1>
-    <form>
-      <div class="input-container">
-        <input type="text" id="usernames" required="required"/>
-        <label for="Username">Username</label>
-        <div class="bar"></div>
-      </div>
-      <div class="input-container">
-        <input type="password" id="passwords" required="required"/>
-        <label for="Password">Password</label>
-        <div class="bar"></div>
-      </div>
-      <div class="input-container">
-        <input type="password" id="Repeat Password" required="required"/>
-        <label for="Repeat Password">Repeat Password</label>
-        <div class="bar"></div>
-      </div>
-      <div class="button-container">
-        <button><span>Next</span></button>
-      </div>
-    </form>
+  <div class="group">
+    <input type="password"><span class="highlight"></span><span class="bar"></span>
+    <label>Password</label>
   </div>
-</div>
+  <button type="submit" class="button buttonBlue">Login
+    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+  </button>
+     <a href="/register">New user? Register</a>
+</form>
+<footer><a href="#" ><img src="static/img/img-7.jpg"></a>
+  <p>You Gotta Love <a href="#" target="_blank">Cake Shop</a></p>
+</footer>
+<!--scripts loaded here-->
 
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src="./static/js/index.js"></script>
+    <script src="static/js/login.js"></script>
 
-
-
-
-  </body>
+</body>
 </html>

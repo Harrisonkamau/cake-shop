@@ -16,12 +16,10 @@
       <!--External css-->
 
     <link rel="stylesheet" href="static/css/styles.css" />
-      <link rel="stylesheet" href="static/css/component.css" />
 
        <!-- Favicon -->
 
 <link rel="icon" href="static/favicon-heart.ico" type="image/x-icon" />
-
   </head>
   <body >
     <nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
@@ -44,9 +42,12 @@
                 <li>&nbsp;</li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="" data-toggle="modal" data-target="#myModal"><i class="fa fa-sign-in" aria-hidden="true"> LogIn</i></a></li>
+                <li><a href="" data-toggle="modal" data-target="#myModal">&nbsp;Welcome, {% if current_user.is_authenticated %}{{current_user.username}}{% endif %}!</i></a></li>
+                 <li><a href="/logout" data-toggle="modal" data-target="#myModal">Logout</i></a></li>
             </ul>
+
         </div>
+
     </div>
 </nav>
 
@@ -56,7 +57,7 @@
         <h2 class="text-center lato animate slideInDown">Our branches <b>operate</b> throughout the week</h2>
         <p class="text-center">
             <br>
-            <a href="#" class="btn btn-danger btn-lg btn-huge lato" data-toggle="modal" data-target="#myModal">Have A Taste Today</a>
+            <a href="#section2" class="btn btn-danger btn-lg btn-huge lato" data-toggle="modal" data-target="#myModal">Have A Taste Today</a>
         </p>
     </div>
     <a href="#section2">
@@ -80,12 +81,7 @@
 
                             <div class="panel-body">
                                 <p>Cream Cakes</p>
-                                <hr><strong>$20</strong> USD &nbsp; &nbsp;
-                                <!-- Buy button -->
-                                     <div class="btn-group">
-                                      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                         Buy Now </button>
-                                    </div>
+                                <hr><strong>$20</strong> USD
                                 <hr>
                             </div>
                         </div>
@@ -100,12 +96,7 @@
                                 <a href=""><img src="static/img/img-3.jpg" alt="image 1" style="height:270px; width:270px;"></a></div>
                             <div class="panel-body">
                                 <p>Butter cakes</p>
-                                <hr> <strong>$20</strong> USD &nbsp; &nbsp;
-                                <!-- Buy button -->
-                                     <div class="btn-group">
-                                      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                         Buy Now </button>
-                                    </div>
+                                <hr> <strong>$20</strong> USD
                                 <hr>
                             </div>
                         </div>
@@ -120,12 +111,7 @@
                                 <a href=""><img src="static/img/img-4.jpg" alt="image 1" style="height:270px; width:270px;"></a></div>
                             <div class="panel-body">
                                 <p>Creamy Cakes</p>
-                                <hr> <strong>$40</strong> USD &nbsp; &nbsp;
-                                <!-- Buy button -->
-                                     <div class="btn-group">
-                                      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                         Buy Now </button>
-                                    </div>
+                                <hr> <strong>$40</strong> USD
                                 <hr>
                             </div>
                         </div>
@@ -153,12 +139,7 @@
                                 <a href=""><img src="static/img/img-5.jpg" alt="image 1" style="height:270px; width:270px;"></a></div>
                             <div class="panel-body">
                                 <p>Black Forest cakes</p>
-                                <hr> <strong>$20</strong> USD &nbsp; &nbsp;
-                                <!-- Buy button -->
-                                     <div class="btn-group">
-                                      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                         Buy Now </button>
-                                    </div>
+                                <hr> <strong>$20</strong> USD
                                 <hr>
                             </div>
                         </div>
@@ -173,12 +154,7 @@
                                 <a href=""><img src="static/img/img-6.jpg" alt="image 1" style="height:270px; width:270px;"></a></div>
                             <div class="panel-body">
                                 <p>Chocolate cakes</p>
-                                <hr><strong>$20 </strong> USD &nbsp; &nbsp;
-                                <!-- Buy button -->
-                                     <div class="btn-group">
-                                      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                         Buy Now </button>
-                                    </div>
+                                <hr><strong>$20 </strong> USD
                                 <hr>
                             </div>
                         </div>
@@ -193,13 +169,7 @@
                                 <a href=""><img src="static/img/img-7.jpg" alt="image 1" style="height:270px; width:270px;"></a></div>
                             <div class="panel-body">
                                 <p>Yummy Cakes</p>
-                                <hr><strong>$40</strong> USD &nbsp; &nbsp;
-				                	<!-- Buy button -->
-                                     <div class="btn-group">
-                                      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                         Buy Now </button>
-                                    </div>
-
+                                <hr><strong>$40</strong> USD
                                 <hr>
                             </div>
                         </div>
@@ -346,40 +316,11 @@
     <a href="#"><i class="fa fa-angle-up"></i></a>
 </div>
 
-<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h2 class="text-center"> Login</h2>
-            </div>
-            <div class="modal-body row">
-                <h6 class="text-center">COMPLETE THESE FIELDS TO SIGN UP</h6>
-                <form class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0" action="">
-                    <div class="form-group">
-                        <input type="text" class="form-control input-lg" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control input-lg" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-danger btn-lg btn-block">Sign In</button>
-                        <span class="pull-right"><a href="{{url_for('register')}}">New User? Register</a></span><span><a href="#">Need help?</a></span>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <h6 class="text-center"><a href="#">Privacy is important to us. Click here to read why.</a></h6>
-            </div>
-        </div>
-    </div>
-</div>
-
     <!--scripts loaded here-->
-    
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    
-    <script src="static/js/scripts.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" async></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js" async></script>
+
+    <script src="static/js/scripts.js" async></script>
   </body>
 </html>
