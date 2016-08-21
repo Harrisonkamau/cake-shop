@@ -9,12 +9,12 @@
 </ol>
 
 <h3>Outlook</h3>
-![Alt text](screenshots/tasty.png ")
+![Alt text](screenshots/tasty.png "tasty 1")
 
 <h3>View all posts</h3>
-![Alt text](screenshots/tasty3.png )
+![Alt text](screenshots/tasty3.png  "tasty 2")
 
 <h3>Create a new post</h3>
-![Alt text](screenshots/outlok1.png )
+![Alt text](screenshots/outlok1.png  "tasty 3")
 
 
